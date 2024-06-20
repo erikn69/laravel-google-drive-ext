@@ -34,7 +34,7 @@ I have included [GoogleDriveServiceProvider](app/Providers/GoogleDriveServicePro
         'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
         'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
         'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
-        'folder' => env('GOOGLE_DRIVE_FOLDER'),
+        'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
         // 'teamDriveId' => env('GOOGLE_DRIVE_TEAM_DRIVE_ID'),
     ],
 
@@ -60,7 +60,7 @@ FILESYSTEM_DRIVER=google
 GOOGLE_DRIVE_CLIENT_ID=xxx.apps.googleusercontent.com
 GOOGLE_DRIVE_CLIENT_SECRET=xxx
 GOOGLE_DRIVE_REFRESH_TOKEN=xxx
-GOOGLE_DRIVE_FOLDER=folder_name
+GOOGLE_DRIVE_FOLDER_ID=folder-id-xxx
 #GOOGLE_DRIVE_TEAM_DRIVE_ID=xxx
 ```
 
@@ -72,12 +72,12 @@ If you want to use multiple Google Drive accounts in a single Laravel app, you n
 MAIN_GOOGLE_DRIVE_CLIENT_ID=xxx.apps.googleusercontent.com
 MAIN_GOOGLE_DRIVE_CLIENT_SECRET=xxx
 MAIN_GOOGLE_DRIVE_REFRESH_TOKEN=xxx
-MAIN_GOOGLE_DRIVE_FOLDER=
+MAIN_GOOGLE_DRIVE_FOLDER_ID=
 
 BACKUP_GOOGLE_DRIVE_CLIENT_ID=xxx.apps.googleusercontent.com
 BACKUP_GOOGLE_DRIVE_CLIENT_SECRET=xxx
 BACKUP_GOOGLE_DRIVE_REFRESH_TOKEN=xxx
-BACKUP_GOOGLE_DRIVE_FOLDER=
+BACKUP_GOOGLE_DRIVE_FOLDER_ID=
 ```
 
 Then you should add a disk in `config/filesystems.php` for each account using the `google` driver and the account specific keys:
@@ -88,7 +88,7 @@ Then you should add a disk in `config/filesystems.php` for each account using th
     'clientId' => env('MAIN_GOOGLE_DRIVE_CLIENT_ID'),
     'clientSecret' => env('MAIN_GOOGLE_DRIVE_CLIENT_SECRET'),
     'refreshToken' => env('MAIN_GOOGLE_DRIVE_REFRESH_TOKEN'),
-    'folder' => env('MAIN_GOOGLE_DRIVE_FOLDER'),
+    'folderId' => env('MAIN_GOOGLE_DRIVE_FOLDER_ID'),
 ],
 
 'backup_google' => [
@@ -96,7 +96,7 @@ Then you should add a disk in `config/filesystems.php` for each account using th
     'clientId' => env('BACKUP_GOOGLE_DRIVE_CLIENT_ID'),
     'clientSecret' => env('BACKUP_GOOGLE_DRIVE_CLIENT_SECRET'),
     'refreshToken' => env('BACKUP_GOOGLE_DRIVE_REFRESH_TOKEN'),
-    'folder' => env('BACKUP_GOOGLE_DRIVE_FOLDER'),
+    'folderId' => env('BACKUP_GOOGLE_DRIVE_FOLDER_ID'),
 ],
 ```
 
