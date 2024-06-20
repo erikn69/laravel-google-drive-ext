@@ -1,6 +1,6 @@
 # Laravel & Google Drive Storage
 
-#### Demo project with Laravel 10.X
+#### Demo project with Laravel 11.x
 
 Look at the commit history to see each of the steps I have taken to set this up.
 
@@ -8,7 +8,7 @@ Look at the commit history to see each of the steps I have taken to set this up.
 
 ```
 git clone git@github.com:erikn69/laravel-google-drive-demo.git
-git checkout 10.x
+git checkout 11.x
 composer install
 cp .env.example .env
 php artisan key:generate
@@ -22,7 +22,7 @@ This will also install only [one additional package](https://github.com/masbug/f
 "masbug/flysystem-google-drive-ext":"^2.0"
 ```
 
-I have included [GoogleDriveServiceProvider](app/Providers/GoogleDriveServiceProvider.php) which I have added to the `providers` array in [`config/app.php`](config/app.php#L179), and added a `google` disk in [`config/filesystems.php`](config/filesystems.php#L66-L73):
+I have included [GoogleDriveServiceProvider](app/Providers/GoogleDriveServiceProvider.php) which I have added to the `providers` array in [`bootstrap/providers.php`](bootstrap/providers.php#L5), and added a `google` disk in [`config/filesystems.php`](config/filesystems.php#L59-L66):
 
 ```php
 'disks' => [
@@ -53,10 +53,10 @@ Detailed information on how to obtain your API ID, secret and refresh token:
 
 ## Update `.env` file
 
-Add the keys you created to your `.env` file and set `google` as your default cloud storage. You can copy the [`.env.example`](.env.example#L35-L40) file and fill in the blanks.
+Add the keys you created to your `.env` file and set `google` as your default cloud storage. You can copy the [`.env.example`](.env.example#L66-L71) file and fill in the blanks.
 
 ```
-FILESYSTEM_CLOUD=google
+FILESYSTEM_DRIVER=google
 GOOGLE_DRIVE_CLIENT_ID=xxx.apps.googleusercontent.com
 GOOGLE_DRIVE_CLIENT_SECRET=xxx
 GOOGLE_DRIVE_REFRESH_TOKEN=xxx
@@ -107,7 +107,7 @@ $mainDisk = Storage::disk('main_google');
 $backupDisk = Storage::disk('backup_google');
 ```
 
-Keep in mind that there can only be one default cloud storage drive, defined by `FILESYSTEM_CLOUD` in your `.env` (or config) file. If you set it to `main_google`, that will be the cloud drive:
+Keep in mind that there can only be one default cloud storage drive, defined by `FILESYSTEM_DRIVER` in your `.env` (or config) file. If you set it to `main_google`, that will be the cloud drive:
 
 ```php
 Storage::cloud(); // refers to Storage::disk('main_google')
